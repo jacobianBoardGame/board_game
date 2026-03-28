@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>籌碼阿瓦隆规则互动介绍 | Chip Avalon</title>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --accent: #111827;
+      --accent-soft: #f3f4f6;
+      --good: #2563eb;
+      --evil: #dc2626;
+      --success: #059669;
+      --fail: #b91c1c;
+      --gold: #b45309;
+      --maxw: 1220px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); }
+    a { color: inherit; text-decoration: none; }
+    .topbar { position: sticky; top: 0; z-index: 10; background: rgba(247,248,250,0.92); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); }
+    .topbar-inner { max-width: var(--maxw); margin: 0 auto; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .brand { font-weight: 800; font-size: 18px; }
+    .toolbar { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn, .btn-link { border: 1px solid var(--line); background: var(--panel); border-radius: 10px; padding: 8px 12px; cursor: pointer; font-size: 14px; }
+    .btn:hover, .btn-link:hover { background: var(--accent-soft); }
+    .btn.primary { background: var(--accent); color: white; border-color: var(--accent); }
+    .page { max-width: var(--maxw); margin: 0 auto; padding: 24px 20px 40px; display: grid; grid-template-columns: 360px 1fr; gap: 20px; }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 18px; }
+    .controls { display: grid; gap: 16px; }
+    .field-group { display: grid; gap: 10px; }
+    .inline-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .label { font-weight: 800; font-size: 14px; }
+    input[type="number"], input[type="text"], select { width: 100%; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font: inherit; background: white; }
+    .helper { font-size: 13px; color: var(--muted); }
+    .viz-wrap { display: grid; gap: 18px; }
+    .top-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 18px; }
+    .mission-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+    .mission-card { border: 1px solid var(--line); border-radius: 14px; padding: 12px; display: grid; gap: 8px; background: white; }
+    .score-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .metric { border: 1px solid var(--line); border-radius: 14px; padding: 12px; background: white; }
+    .metric strong { display: block; font-size: 24px; margin-top: 6px; }
+    .player-editor { display: grid; gap: 10px; }
+    .player-item { border: 1px solid var(--line); border-radius: 14px; padding: 12px; background: white; display: grid; gap: 10px; }
+    .player-item-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .player-item-head strong { font-size: 15px; }
+    .badge { padding: 4px 8px; border-radius: 999px; font-size: 12px; background: var(--accent-soft); border: 1px solid var(--line); }
+    .result-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .result-table th, .result-table td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; }
+    .result-table th { background: var(--accent-soft); color: var(--muted); }
+    .good { color: var(--good); }
+    .evil { color: var(--evil); }
+    .success { color: var(--success); }
+    .fail { color: var(--fail); }
+    .gold { color: var(--gold); }
+    .mission-status { display: inline-flex; justify-content: center; border-radius: 999px; padding: 6px 8px; font-size: 12px; font-weight: 700; }
+    .mission-status.success { background: #ecfdf3; color: var(--success); }
+    .mission-status.fail { background: #fef2f2; color: var(--fail); }
+    .mission-status.pending { background: #f3f4f6; color: var(--muted); }
+    .note-box { border: 1px dashed var(--line); border-radius: 14px; padding: 14px; background: #fafafa; color: var(--muted); font-size: 14px; }
+    svg { width: 100%; height: auto; display: block; }
+    @media (max-width: 1040px) {
+      .page { grid-template-columns: 1fr; }
+      .top-grid { grid-template-columns: 1fr; }
+      .score-grid { grid-template-columns: 1fr 1fr; }
+      .mission-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">籌碼阿瓦隆规则互动介绍</div>
+      <div class="toolbar">
+        <a class="btn-link" href="./index.html">首页</a>
+        <a class="btn-link" href="./avalon-intro.html">阿瓦隆介绍</a>
+        <a class="btn-link" href="./calculator.html">结算工具</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="panel controls">
+      <div>
+        <h1>当前规则互动页</h1>
+        <p class="helper">把标准阿瓦隆上的胜负、身份和任务记录，映射到你的筹码结算规则里。</p>
+      </div>
+
+      <div class="field-group">
+        <div class="label">基础参数</div>
+        <div class="inline-row">
+          <input type="number" id="base-i" value="1" step="1" placeholder="i" />
+          <input type="number" id="base-j" value="5" step="1" placeholder="j" />
+          <input type="number" id="base-z" value="2" step="1" placeholder="z" />
+        </div>
+        <div class="helper">默认对应你当前规则：i=1, j=5, z=2。</div>
+      </div>
+
+      <div class="field-group">
+        <div class="label">玩家数量</div>
+        <div class="inline-row">
+          <button class="btn" id="minus-player">−</button>
+          <input type="number" id="player-count" min="5" max="10" step="1" value="5" />
+          <button class="btn" id="plus-player">+</button>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="label">快速填充</div>
+        <div class="inline-row">
+          <button class="btn primary" id="preset-five">5 人推荐身份</button>
+          <button class="btn" id="preset-seven">7 人推荐身份</button>
+          <button class="btn" id="preset-ten">10 人推荐身份</button>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="label">全局事件</div>
+        <label><input type="checkbox" id="event-evil-sabotage-win" /> 坏人靠炸车获胜</label>
+        <label><input type="checkbox" id="event-assassin-hit-merlin" /> 刺客刺中梅林</label>
+        <label><input type="checkbox" id="event-good-clean-win" /> 好人三次平安发车并获胜</label>
+        <label>
+          参与炸车的坏人数量
+          <select id="evil-saboteur-count">
+            <option value="0">0</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="field-group">
+        <div class="label">说明</div>
+        <div class="note-box" id="rule-explain-box"></div>
+      </div>
+    </section>
+
+    <section class="viz-wrap">
+      <section class="top-grid">
+        <section class="panel">
+          <h2>桌面与阵营分布</h2>
+          <svg id="rule-svg" viewBox="0 0 760 520"></svg>
+        </section>
+        <section class="panel">
+          <h2>任务 1–5 与结算信号</h2>
+          <div class="mission-grid" id="mission-grid"></div>
+        </section>
+      </section>
+
+      <section class="panel">
+        <h2>筹码结果摘要</h2>
+        <div class="score-grid" id="metric-grid"></div>
+      </section>
+
+      <section class="top-grid">
+        <section class="panel">
+          <h2>玩家编辑</h2>
+          <div class="player-editor" id="player-editor"></div>
+        </section>
+
+        <section class="panel">
+          <h2>逐人结算结果</h2>
+          <div style="overflow-x:auto;">
+            <table class="result-table">
+              <thead>
+                <tr>
+                  <th>玩家</th>
+                  <th>身份</th>
+                  <th>阵营</th>
+                  <th>胜负</th>
+                  <th>主局分</th>
+                  <th>特殊分</th>
+                  <th>总分</th>
+                </tr>
+              </thead>
+              <tbody id="result-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const roleCamp = {
+      "梅林": "good",
+      "派西维尔": "good",
+      "忠臣": "good",
+      "莫甘娜": "evil",
+      "莫德雷德": "evil",
+      "刺客": "evil",
+      "奥伯伦": "evil"
+    };
+
+    const presets = {
+      5: ["梅林", "派西维尔", "忠臣", "刺客", "莫甘娜"],
+      7: ["梅林", "派西维尔", "忠臣", "忠臣", "刺客", "莫甘娜", "奥伯伦"],
+      10: ["梅林", "派西维尔", "忠臣", "忠臣", "忠臣", "忠臣", "刺客", "莫甘娜", "莫德雷德", "奥伯伦"]
+    };
+
+    const state = {
+      playerCount: 5,
+      missions: [null, null, null, null, null],
+      players: []
+    };
+
+    const roleOptions = ["梅林", "派西维尔", "忠臣", "莫甘娜", "莫德雷德", "刺客", "奥伯伦"];
+
+    function clampCount(val) {
+      return Math.max(5, Math.min(10, val));
+    }
+
+    function initPlayers(count) {
+      state.players = Array.from({ length: count }, (_, i) => ({
+        id: i + 1,
+        name: `P${i + 1}`,
+        role: null,
+        camp: null,
+        win: false,
+        extra: 0
+      }));
+    }
+
+    function applyPreset(count) {
+      setPlayerCount(count);
+      const roles = presets[count] || [];
+      state.players.forEach((p, i) => {
+        p.role = roles[i] || null;
+        p.camp = p.role ? roleCamp[p.role] : null;
+        p.win = p.camp === "good";
+      });
+      renderAll();
+    }
+
+    function setPlayerCount(count) {
+      state.playerCount = clampCount(count);
+      document.getElementById("player-count").value = state.playerCount;
+      state.missions = [null, null, null, null, null];
+      initPlayers(state.playerCount);
+      renderAll();
+    }
+
+    function readNum(id, fallback = 0) {
+      const val = Number(document.getElementById(id).value);
+      return Number.isFinite(val) ? val : fallback;
+    }
+
+    function calcData() {
+      const i = readNum("base-i", 1);
+      const j = readNum("base-j", 5);
+      const z = readNum("base-z", 2);
+      const evilSabotageWin = document.getElementById("event-evil-sabotage-win").checked;
+      const assassinHitMerlin = document.getElementById("event-assassin-hit-merlin").checked;
+      const goodCleanWin = document.getElementById("event-good-clean-win").checked;
+      const evilSaboteurCount = Number(document.getElementById("evil-saboteur-count").value) || 0;
+
+      const rows = state.players.map((p) => {
+        const base = p.win ? i * j : -i * j;
+        let bonus = 0;
+
+        if (evilSabotageWin) bonus += p.camp === "evil" ? i : -i;
+        if (assassinHitMerlin) {
+          bonus += p.camp === "evil" ? i : -i;
+          if (p.role === "刺客") bonus += i;
+          if (p.role === "梅林") bonus -= i;
+        }
+        if (goodCleanWin) bonus += p.camp === "good" ? i : -i;
+        if (evilSabotageWin && evilSaboteurCount === 2) bonus += p.camp === "evil" ? i : -i;
+        if (evilSabotageWin && evilSaboteurCount === 3) bonus += p.camp === "evil" ? 2 * i : -2 * i;
+
+        return {
+          ...p,
+          base,
+          bonus,
+          total: base + bonus + (Number(p.extra) || 0)
+        };
+      });
+
+      const pool = state.players.length * z * i;
+      return {
+        i, j, z, pool,
+        goodCount: rows.filter(r => r.camp === "good").length,
+        evilCount: rows.filter(r => r.camp === "evil").length,
+        missionSuccess: state.missions.filter(m => m === "success").length,
+        missionFail: state.missions.filter(m => m === "fail").length,
+        rows
+      };
+    }
+
+    function renderTableSvg() {
+      const svg = d3.select("#rule-svg");
+      svg.selectAll("*").remove();
+
+      const width = 760;
+      const height = 520;
+      const cx = width / 2;
+      const cy = height / 2 + 10;
+      const radius = 175;
+      const step = (Math.PI * 2) / state.players.length;
+
+      svg.append("ellipse")
+        .attr("cx", cx)
+        .attr("cy", cy)
+        .attr("rx", 180)
+        .attr("ry", 115)
+        .attr("fill", "white")
+        .attr("stroke", "#d1d5db")
+        .attr("stroke-width", 2);
+
+      svg.append("text")
+        .attr("x", cx)
+        .attr("y", cy)
+        .attr("text-anchor", "middle")
+        .attr("font-size", 16)
+        .attr("font-weight", 800)
+        .text("籌碼阿瓦隆 · 主局与结算映射");
+
+      const g = svg.append("g");
+      state.players.forEach((p, idx) => {
+        const angle = -Math.PI / 2 + idx * step;
+        const x = cx + Math.cos(angle) * radius;
+        const y = cy + Math.sin(angle) * radius;
+        const fill = p.camp === "good" ? "#dbeafe" : p.camp === "evil" ? "#fee2e2" : "#f3f4f6";
+        const stroke = p.camp === "good" ? "#2563eb" : p.camp === "evil" ? "#dc2626" : "#9ca3af";
+
+        g.append("circle")
+          .attr("cx", x)
+          .attr("cy", y)
+          .attr("r", 35)
+          .attr("fill", fill)
+          .attr("stroke", stroke)
+          .attr("stroke-width", 2.5);
+
+        g.append("text")
+          .attr("x", x)
+          .attr("y", y - 4)
+          .attr("text-anchor", "middle")
+          .attr("font-size", 13)
+          .attr("font-weight", 800)
+          .text(p.name);
+
+        g.append("text")
+          .attr("x", x)
+          .attr("y", y + 15)
+          .attr("text-anchor", "middle")
+          .attr("font-size", 11)
+          .attr("fill", "#6b7280")
+          .text(p.role || "未分配");
+      });
+    }
+
+    function renderMissionGrid() {
+      const el = document.getElementById("mission-grid");
+      el.innerHTML = "";
+      state.missions.forEach((m, idx) => {
+        const card = document.createElement("div");
+        const cls = m === "success" ? "success" : m === "fail" ? "fail" : "pending";
+        const text = m === "success" ? "成功" : m === "fail" ? "失败" : "未记录";
+        card.className = "mission-card";
+        card.innerHTML = `
+          <strong>第 ${idx + 1} 轮</strong>
+          <span class="mission-status ${cls}">${text}</span>
+          <div class="inline-row">
+            <button class="btn" data-round="${idx}" data-val="success">成功</button>
+            <button class="btn" data-round="${idx}" data-val="fail">失败</button>
+            <button class="btn" data-round="${idx}" data-val="clear">清空</button>
+          </div>
+        `;
+        el.appendChild(card);
+      });
+
+      el.querySelectorAll("button[data-round]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const round = Number(btn.dataset.round);
+          const val = btn.dataset.val;
+          state.missions[round] = val === "clear" ? null : val;
+          renderAll();
+        });
+      });
+    }
+
+    function renderPlayerEditor() {
+      const el = document.getElementById("player-editor");
+      el.innerHTML = "";
+      state.players.forEach((p, idx) => {
+        const card = document.createElement("div");
+        card.className = "player-item";
+        card.innerHTML = `
+          <div class="player-item-head">
+            <strong>${p.name}</strong>
+            <span class="badge">座位 ${idx + 1}</span>
+          </div>
+          <input type="text" value="${p.name}" data-type="name" data-id="${p.id}" />
+          <select data-type="role" data-id="${p.id}">
+            <option value="">未分配</option>
+            ${roleOptions.map(role => `<option value="${role}" ${p.role === role ? "selected" : ""}>${role}</option>`).join("")}
+          </select>
+          <select data-type="win" data-id="${p.id}">
+            <option value="yes" ${p.win ? "selected" : ""}>属于胜利阵营</option>
+            <option value="no" ${!p.win ? "selected" : ""}>属于失败阵营</option>
+          </select>
+          <input type="number" value="${p.extra}" data-type="extra" data-id="${p.id}" placeholder="个人修正" />
+        `;
+        el.appendChild(card);
+      });
+
+      el.querySelectorAll("[data-type]").forEach(input => {
+        input.addEventListener("change", () => {
+          const id = Number(input.dataset.id);
+          const type = input.dataset.type;
+          const player = state.players.find(p => p.id === id);
+          if (!player) return;
+          if (type === "name") player.name = input.value || `P${id}`;
+          if (type === "role") {
+            player.role = input.value || null;
+            player.camp = player.role ? roleCamp[player.role] : null;
+          }
+          if (type === "win") player.win = input.value === "yes";
+          if (type === "extra") player.extra = Number(input.value) || 0;
+          renderAll();
+        });
+      });
+    }
+
+    function renderMetrics(data) {
+      const el = document.getElementById("metric-grid");
+      const metrics = [
+        { label: "好人数量", value: data.goodCount, cls: "good" },
+        { label: "坏人数量", value: data.evilCount, cls: "evil" },
+        { label: "公共池", value: data.pool, cls: "gold" },
+        { label: "任务比分", value: `${data.missionSuccess} : ${data.missionFail}`, cls: data.missionSuccess >= data.missionFail ? "success" : "fail" }
+      ];
+      el.innerHTML = metrics.map(m => `<div class="metric"><span>${m.label}</span><strong class="${m.cls}">${m.value}</strong></div>`).join("");
+    }
+
+    function renderResultRows(data) {
+      const body = document.getElementById("result-body");
+      body.innerHTML = data.rows.map(row => `
+        <tr>
+          <td>${row.name}</td>
+          <td>${row.role || "未分配"}</td>
+          <td class="${row.camp || ''}">${row.camp === "good" ? "好人" : row.camp === "evil" ? "坏人" : "未定"}</td>
+          <td>${row.win ? "胜" : "负"}</td>
+          <td>${row.base}</td>
+          <td>${row.bonus + (Number(row.extra) || 0)}</td>
+          <td><strong>${row.total}</strong></td>
+        </tr>
+      `).join("");
+    }
+
+    function renderExplain(data) {
+      const lines = [];
+      lines.push(`当前共有 ${state.playerCount} 名玩家。主局按 ± i×j 结算。`);
+      if (document.getElementById("event-evil-sabotage-win").checked) lines.push("已勾选：坏人靠炸车获胜，会触发坏人额外加分、好人额外减分。");
+      if (document.getElementById("event-assassin-hit-merlin").checked) lines.push("已勾选：刺客刺中梅林，会对阵营和刺客/梅林本人追加修正。");
+      if (document.getElementById("event-good-clean-win").checked) lines.push("已勾选：好人三次平安发车并获胜，会给好人额外加分。 ");
+      lines.push(`当前任务记录为 ${data.missionSuccess} 成功、${data.missionFail} 失败。这个互动页的作用，是把“身份 + 任务 + 胜负”映射成“筹码结果”。`);
+      document.getElementById("rule-explain-box").textContent = lines.join(" ");
+    }
+
+    function renderAll() {
+      const data = calcData();
+      renderTableSvg();
+      renderMissionGrid();
+      renderPlayerEditor();
+      renderMetrics(data);
+      renderResultRows(data);
+      renderExplain(data);
+    }
+
+    document.getElementById("plus-player").addEventListener("click", () => setPlayerCount(state.playerCount + 1));
+    document.getElementById("minus-player").addEventListener("click", () => setPlayerCount(state.playerCount - 1));
+    document.getElementById("player-count").addEventListener("change", (e) => setPlayerCount(Number(e.target.value)));
+    document.getElementById("preset-five").addEventListener("click", () => applyPreset(5));
+    document.getElementById("preset-seven").addEventListener("click", () => applyPreset(7));
+    document.getElementById("preset-ten").addEventListener("click", () => applyPreset(10));
+
+    ["base-i","base-j","base-z","event-evil-sabotage-win","event-assassin-hit-merlin","event-good-clean-win","evil-saboteur-count"].forEach(id => {
+      document.getElementById(id).addEventListener("change", renderAll);
+    });
+
+    setPlayerCount(5);
+  </script>
+</body>
+</html>
