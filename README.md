@@ -39,6 +39,43 @@ Code and technical implementation may be licensed under the **MIT License**.
 This repository is an independent fan-made project inspired by Avalon.  
 It is not affiliated with, endorsed by, or sponsored by the original rights holders of Avalon.
 
+## Attribution Requirements / 引用与署名要求
+
+If you reference, repost, adapt, explain, translate, or build upon this project, you must preserve clear attribution to the original source.
+
+如果你引用、转载、改编、讲解、翻译或基于本项目继续创作，必须清晰保留原始来源署名。
+
+Minimum requirements / 最低要求：
+
+- mention **@jacobian** as the project organizer or original public source maintainer  
+  提及 **@jacobian** 作为项目组织者或原始公开来源维护者
+- include the original GitHub repository link  
+  附上原始 GitHub 仓库链接
+- state that the material is based on **籌碼阿瓦隆 / Chip Avalon**  
+  说明内容基于 **籌碼阿瓦隆 / Chip Avalon**
+- do not remove existing author or project credit information  
+  不得删除现有作者或项目信息
+
+Recommended citation format / 推荐引用格式：
+
+> Based on **籌碼阿瓦隆 / Chip Avalon**  
+> Original public source maintained by **@jacobian**  
+> GitHub: `https://github.com/jacobianBoardGame/board_game/`
+
+适用范围包括但不限于：
+
+- rule reposts / 规则转载
+- adapted versions / 改编版本
+- screenshots or page captures / 页面截图
+- video introductions / 视频介绍
+- social media posts / 社交媒体帖子
+- translated versions / 翻译版本
+- calculators or derivative tools / 结算器或衍生工具
+- presentation slides / 演示文稿
+
+If you make changes, please clearly indicate what was changed.  
+如果你进行了修改，请明确说明修改了哪些内容。
+
 ## Authors
 
 Listed in alphabetical order by GitHub handle.
