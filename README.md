@@ -38,3 +38,25 @@ Code and technical implementation may be licensed under the **MIT License**.
 
 This repository is an independent fan-made project inspired by Avalon.  
 It is not affiliated with, endorsed by, or sponsored by the original rights holders of Avalon.
+
+## Authors
+
+Listed in alphabetical order by GitHub handle.
+
+- `@du_sk` — KTH Bachelor Student
+- `@jacobian` — KTH PhD Candidate
+- `@jiojio` — PKU Bachelor Student
+- `@LXY` — KTH Master Student
+- `@咳咳派大星` — KTH PhD Candidate
+- `@小魚都來` — KTH Master Student
+- `@摸魚` — CTH Master Student
+- `@現在` — KTH PhD Candidate
+
+## Team Photo
+
+
+## Team
+
+![Group Photo 1](assets/group1.png)
+![Group Photo 2](assets/group2.png)
+
