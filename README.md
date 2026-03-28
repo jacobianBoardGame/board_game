@@ -44,7 +44,7 @@ It is not affiliated with, endorsed by, or sponsored by the original rights hold
 Listed in alphabetical order by GitHub handle.
 
 - `@du_sk` — KTH Bachelor Student
-- `@jacobian` — KTH PhD Candidate
+- `@jacobian` — KTH PhD Candidate (Initiator)
 - `@jiojio` — PKU Bachelor Student
 - `@LXY` — KTH Master Student
 - `@咳咳派大星` — KTH PhD Candidate
