@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>规则介绍 | 籌碼阿瓦隆</title>
+  <link rel="stylesheet" href="./assets/css/main.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">籌碼阿瓦隆 / Chip Avalon</div>
+      <nav class="toolbar">
+        <a class="btn-link" href="./index.html">首页 / Home</a>
+        <a class="btn-link active-nav" href="./quickstart.html">规则介绍 / Quick Start</a>
+        <a class="btn-link" href="./rules.html">完整规则 / Rules</a>
+        <a class="btn-link" href="./calculator.html">简易结算 / Calculator</a>
+      </nav>
+      <div class="toolbar">
+        <button id="btn-zh" class="active" type="button">中文</button>
+        <button id="btn-en" type="button">English</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout single">
+    <section class="content">
+      <section class="hero">
+        <div data-lang="zh" class="show">
+          <h1>规则介绍</h1>
+          <p>给第一次接触籌碼阿瓦隆的人。先理解核心概念、游戏流程和最简使用法，再进入完整规则页。</p>
+        </div>
+        <div data-lang="en">
+          <h1>Quick Start</h1>
+          <p>For first-time readers of Chip Avalon: understand the core concepts, match flow, and minimum setup before opening the formal rules page.</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <div data-lang="zh" class="show">
+          <h2>1. 核心思路</h2>
+          <ul>
+            <li>保留阿瓦隆主局对抗结构</li>
+            <li>加入筹码结算，让每局结束后有明确收付结果</li>
+            <li>允许发车盘、身份盘等小盘口作为附加互动层</li>
+          </ul>
+        </div>
+        <div data-lang="en">
+          <h2>1. Core idea</h2>
+          <ul>
+            <li>Keeps the main team-vs-team structure of Avalon</li>
+            <li>Adds chip settlement to produce clear pay/receive results after each game</li>
+            <li>Allows side markets such as mission bets and identity bets for extra interaction</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="grid-2">
+        <article class="card">
+          <div data-lang="zh" class="show">
+            <h2>2. 三个基础参数</h2>
+            <div class="formula">i = 基础单位，j = 主局系数，z = 入场费系数</div>
+            <p class="note">默认示例：i = 1，j = 5，z = 2。</p>
+          </div>
+          <div data-lang="en">
+            <h2>2. Three base parameters</h2>
+            <div class="formula">i = base unit, j = main-game multiplier, z = entry-fee multiplier</div>
+            <p class="note">Default example: i = 1, j = 5, z = 2.</p>
+          </div>
+        </article>
+        <article class="card">
+          <div data-lang="zh" class="show">
+            <h2>3. 一局怎么结算</h2>
+            <ul>
+              <li>先算主局胜负</li>
+              <li>再算特殊事件加减分</li>
+              <li>小盘口单独平衡</li>
+              <li>最后合并成每人总分与收付结果</li>
+            </ul>
+          </div>
+          <div data-lang="en">
+            <h2>3. How one game settles</h2>
+            <ul>
+              <li>Calculate the main-game win/loss first</li>
+              <li>Then add special-event bonuses and penalties</li>
+              <li>Settle side markets separately</li>
+              <li>Combine everything into each player's final total and payment result</li>
+            </ul>
+          </div>
+        </article>
+      </section>
+
+      <section class="card">
+        <div data-lang="zh" class="show">
+          <h2>4. 最小使用方式</h2>
+          <ol>
+            <li>确定 i, j, z</li>
+            <li>每位玩家支付入场费进入公共池</li>
+            <li>完成一局阿瓦隆</li>
+            <li>根据胜负和特殊事件结算主局</li>
+            <li>如有小盘口，再分别结算</li>
+            <li>输出每位玩家最终应收 / 应付</li>
+          </ol>
+        </div>
+        <div data-lang="en">
+          <h2>4. Minimum operating flow</h2>
+          <ol>
+            <li>Set i, j, and z</li>
+            <li>Each player pays the entry fee into the shared pool</li>
+            <li>Play one game of Avalon</li>
+            <li>Settle the base game using win/loss and special events</li>
+            <li>Settle side markets if any were opened</li>
+            <li>Output each player's final receive/pay result</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="card">
+        <div data-lang="zh" class="show">
+          <h2>5. 下一步</h2>
+          <p>若你已理解整体逻辑，可继续查看正式规则，或直接进入简易结算页进行演示。</p>
+          <div class="cta-row">
+            <a class="btn-primary" href="./rules.html">查看完整规则</a>
+            <a class="btn-link" href="./calculator.html">打开结算工具</a>
+          </div>
+        </div>
+        <div data-lang="en">
+          <h2>5. Next step</h2>
+          <p>If you understand the overall logic, continue to the formal rules or open the calculator for a quick demonstration.</p>
+          <div class="cta-row">
+            <a class="btn-primary" href="./rules.html">Open Full Rules</a>
+            <a class="btn-link" href="./calculator.html">Open Calculator</a>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="./assets/js/lang.js"></script>
+</body>
+</html>

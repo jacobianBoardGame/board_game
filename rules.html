@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>完整规则 | 籌碼阿瓦隆</title>
+  <link rel="stylesheet" href="./assets/css/main.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">籌碼阿瓦隆 / Chip Avalon</div>
+      <nav class="toolbar">
+        <a class="btn-link" href="./index.html">首页 / Home</a>
+        <a class="btn-link" href="./quickstart.html">规则介绍 / Quick Start</a>
+        <a class="btn-link active-nav" href="./rules.html">完整规则 / Rules</a>
+        <a class="btn-link" href="./calculator.html">简易结算 / Calculator</a>
+      </nav>
+      <div class="toolbar">
+        <button id="btn-zh" class="active" type="button">中文</button>
+        <button id="btn-en" type="button">English</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <div data-lang="zh" class="show">
+        <h2>目录</h2>
+        <nav>
+          <a href="#overview">概览</a>
+          <a href="#units">基础单位</a>
+          <a href="#main-settlement">1. 主局结算</a>
+          <a href="#special-settlement">2. 特殊结算</a>
+          <a href="#mission-bet">3. 发车盘</a>
+          <a href="#identity-bet">4. 身份盘</a>
+          <a href="#restrictions">5. 限制</a>
+          <a href="#final-settlement">6. 最终结算</a>
+          <a href="#extensions">7. 扩展空间</a>
+        </nav>
+      </div>
+      <div data-lang="en">
+        <h2>Contents</h2>
+        <nav>
+          <a href="#overview">Overview</a>
+          <a href="#units">Base Units</a>
+          <a href="#main-settlement">1. Main Settlement</a>
+          <a href="#special-settlement">2. Special Settlement</a>
+          <a href="#mission-bet">3. Mission Bet</a>
+          <a href="#identity-bet">4. Identity Bet</a>
+          <a href="#restrictions">5. Restrictions</a>
+          <a href="#final-settlement">6. Final Settlement</a>
+          <a href="#extensions">7. Extension Space</a>
+        </nav>
+      </div>
+    </aside>
+
+    <section class="content">
+      <section class="hero" id="overview">
+        <div data-lang="zh" class="show">
+          <h1>籌碼阿瓦隆完整规则</h1>
+          <p>此页保存正式规则文本。适合作为 GitHub Pages 上的长期维护版本，并为未来修订和变体保留结构。</p>
+        </div>
+        <div data-lang="en">
+          <h1>Chip Avalon Full Rules</h1>
+          <p>This page stores the formal rule text for long-term maintenance on GitHub Pages, with room for revisions and variants.</p>
+        </div>
+      </section>
+
+      <section class="card" id="units">
+        <div data-lang="zh" class="show">
+          <h2>基础单位</h2>
+          <div class="formula">i = 1, j = 5, z = 2</div>
+          <p class="note">i 为基础计分单位；j 为主局系数；z 为入场费系数。</p>
+        </div>
+        <div data-lang="en">
+          <h2>Base Units</h2>
+          <div class="formula">i = 1, j = 5, z = 2</div>
+          <p class="note">i is the base scoring unit; j is the main-game multiplier; z is the entry-fee multiplier.</p>
+        </div>
+      </section>
+
+      <section class="card" id="main-settlement">
+        <div data-lang="zh" class="show">
+          <h2>1. 主局结算</h2>
+          <ul>
+            <li>胜利阵营每人 <strong>+ i × j</strong></li>
+            <li>失败阵营每人 <strong>- i × j</strong></li>
+          </ul>
+        </div>
+        <div data-lang="en">
+          <h2>1. Main Settlement</h2>
+          <ul>
+            <li>Each member of the winning camp receives <strong>+ i × j</strong></li>
+            <li>Each member of the losing camp receives <strong>- i × j</strong></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card" id="special-settlement">
+        <div data-lang="zh" class="show">
+          <h2>2. 特殊结算</h2>
+          <ul>
+            <li>狼人炸车获胜：狼人每人再 <strong>+i</strong>，好人每人再 <strong>-i</strong></li>
+            <li>刺客刺中梅林获胜：狼人每人再 <strong>+i</strong>，好人每人再 <strong>-i</strong>，刺客再 <strong>+i</strong>，梅林再 <strong>-i</strong></li>
+            <li>好人三次平安发车且最终获胜：好人每人再 <strong>+i</strong>，狼人每人再 <strong>-i</strong></li>
+            <li>若最终狼人靠炸车获胜，且全局有两狼或三狼参与过炸车：</li>
+          </ul>
+          <ul>
+            <li>两狼参与：狼人每人再 <strong>+i</strong>，好人每人再 <strong>-i</strong></li>
+            <li>三狼参与：狼人每人再 <strong>+2i</strong>，好人每人再 <strong>-2i</strong></li>
+          </ul>
+        </div>
+        <div data-lang="en">
+          <h2>2. Special Settlement</h2>
+          <ul>
+            <li>Evil wins by mission sabotage: each evil player gains <strong>+i</strong>, each good player loses <strong>-i</strong></li>
+            <li>Assassin correctly kills Merlin: each evil player gains <strong>+i</strong>, each good player loses <strong>-i</strong>; the Assassin gains an additional <strong>+i</strong>, Merlin loses an additional <strong>-i</strong></li>
+            <li>Good achieves three clean missions and wins the game: each good player gains <strong>+i</strong>, each evil player loses <strong>-i</strong></li>
+            <li>If evil wins through sabotage and two or three evil players have sabotaged missions during the game:</li>
+          </ul>
+          <ul>
+            <li>Two evil participants: each evil player gains <strong>+i</strong>, each good player loses <strong>-i</strong></li>
+            <li>Three evil participants: each evil player gains <strong>+2i</strong>, each good player loses <strong>-2i</strong></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card" id="mission-bet">
+        <div data-lang="zh" class="show">
+          <h2>3. 发车盘（小盘口）</h2>
+          <ul>
+            <li>每轮任务前可开盘：“本轮发车是否成功”</li>
+            <li>需达成赔付平衡后方可成立</li>
+            <li>押成功：中 <strong>+i</strong>，错 <strong>-i</strong></li>
+            <li>押失败：中 <strong>+i</strong>，错 <strong>-i</strong></li>
+          </ul>
+        </div>
+        <div data-lang="en">
+          <h2>3. Mission Bet (Side Bet)</h2>
+          <ul>
+            <li>Before each mission, a side market may be opened: “Will this mission succeed?”</li>
+            <li>The market must be payout-balanced before it becomes valid</li>
+            <li>Bet on success: correct <strong>+i</strong>, wrong <strong>-i</strong></li>
+            <li>Bet on failure: correct <strong>+i</strong>, wrong <strong>-i</strong></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card" id="identity-bet">
+        <div data-lang="zh" class="show">
+          <h2>4. 身份盘（小盘口）</h2>
+          <ul>
+            <li>全局最多开 2 次，建议在第 2、4 发车轮</li>
+            <li>猜某人红蓝：中 <strong>+i</strong>，错 <strong>-i</strong></li>
+            <li>猜某人具体身份：中 <strong>+i</strong>，错 <strong>-i</strong></li>
+          </ul>
+        </div>
+        <div data-lang="en">
+          <h2>4. Identity Bet (Side Bet)</h2>
+          <ul>
+            <li>At most 2 identity markets may be opened per game, suggested on mission rounds 2 and 4</li>
+            <li>Guess a player’s camp (good/evil): correct <strong>+i</strong>, wrong <strong>-i</strong></li>
+            <li>Guess a player’s exact role: correct <strong>+i</strong>, wrong <strong>-i</strong></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card" id="restrictions">
+        <div data-lang="zh" class="show">
+          <h2>5. 限制</h2>
+          <ul>
+            <li>每人每盘最多下注一次</li>
+            <li>强制下注</li>
+            <li>身份盘中，同一玩家同类盘口不可重复开</li>
+          </ul>
+        </div>
+        <div data-lang="en">
+          <h2>5. Restrictions</h2>
+          <ul>
+            <li>Each player may place at most one bet in each market</li>
+            <li>Betting is mandatory</li>
+            <li>In identity markets, the same type of market cannot be opened repeatedly for the same player</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card" id="final-settlement">
+        <div data-lang="zh" class="show">
+          <h2>6. 最终结算</h2>
+          <ul>
+            <li>每局开始，玩家支付入场费 <strong>z × i</strong> 作为公共池</li>
+            <li>小赌局单独平衡结算</li>
+            <li>最终主局只算原始分</li>
+            <li>正分的人收钱，负分的人付钱</li>
+            <li>小数部分由公共奖池支付</li>
+            <li>胜利方瓜分奖池</li>
+          </ul>
+        </div>
+        <div data-lang="en">
+          <h2>6. Final Settlement</h2>
+          <ul>
+            <li>At the start of each game, every player pays an entry fee of <strong>z × i</strong> into the public pool</li>
+            <li>Side bets are settled separately in a balanced manner</li>
+            <li>The final main-game settlement uses only the original main-game score</li>
+            <li>Players with positive scores receive money; players with negative scores pay money</li>
+            <li>Decimal remainders are covered by the public pool</li>
+            <li>The winning side shares the prize pool</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card" id="extensions">
+        <div data-lang="zh" class="show">
+          <h2>7. 扩展空间</h2>
+          <ul>
+            <li>可加入 3 / 4 / 5 轮不同倍率的快胜奖励</li>
+            <li>可加入 FAQ、示例局和边界情况说明</li>
+            <li>可加入更多身份、不同人数模式与变体盘口</li>
+          </ul>
+        </div>
+        <div data-lang="en">
+          <h2>7. Extension Space</h2>
+          <ul>
+            <li>Faster-win bonuses for 3 / 4 / 5 round outcomes can be added</li>
+            <li>FAQ, sample games, and edge-case notes can be added later</li>
+            <li>More roles, player-count modes, and side-market variants can be supported</li>
+          </ul>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="./assets/js/lang.js"></script>
+</body>
+</html>

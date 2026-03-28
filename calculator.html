@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>简易结算 | 籌碼阿瓦隆</title>
+  <link rel="stylesheet" href="./assets/css/main.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">籌碼阿瓦隆 / Chip Avalon</div>
+      <nav class="toolbar">
+        <a class="btn-link" href="./index.html">首页 / Home</a>
+        <a class="btn-link" href="./quickstart.html">规则介绍 / Quick Start</a>
+        <a class="btn-link" href="./rules.html">完整规则 / Rules</a>
+        <a class="btn-link active-nav" href="./calculator.html">简易结算 / Calculator</a>
+      </nav>
+      <div class="toolbar">
+        <button id="btn-zh" class="active" type="button">中文</button>
+        <button id="btn-en" type="button">English</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout single">
+    <section class="content">
+      <section class="hero">
+        <div data-lang="zh" class="show">
+          <h1>简易结算工具</h1>
+          <p>第一版采用最轻量的静态实现：输入参数、玩家阵营和特殊事件，立即得到总分与应收应付结果。</p>
+        </div>
+        <div data-lang="en">
+          <h1>Settlement Calculator</h1>
+          <p>The first version is a lightweight static implementation: enter parameters, camps, and special events to get totals and payment results instantly.</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <div data-lang="zh" class="show"><h2>基础参数</h2></div>
+        <div data-lang="en"><h2>Base Parameters</h2></div>
+        <div class="form-grid">
+          <label>
+            <span>i</span>
+            <input type="number" id="base-i" value="1" step="1" />
+          </label>
+          <label>
+            <span>j</span>
+            <input type="number" id="base-j" value="5" step="1" />
+          </label>
+          <label>
+            <span>z</span>
+            <input type="number" id="base-z" value="2" step="1" />
+          </label>
+          <label>
+            <span data-lang="zh" class="show">玩家人数</span>
+            <span data-lang="en">Players</span>
+            <input type="number" id="player-count" value="5" min="5" max="10" step="1" />
+          </label>
+        </div>
+        <div class="cta-row">
+          <button id="build-players" type="button">Generate Player Rows</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <div data-lang="zh" class="show"><h2>玩家信息</h2></div>
+        <div data-lang="en"><h2>Player Data</h2></div>
+        <div id="players-container"></div>
+      </section>
+
+      <section class="card">
+        <div data-lang="zh" class="show"><h2>全局事件</h2></div>
+        <div data-lang="en"><h2>Global Events</h2></div>
+        <div class="form-grid checkbox-grid">
+          <label><input type="checkbox" id="event-evil-sabotage-win" /> Evil wins by sabotage</label>
+          <label><input type="checkbox" id="event-assassin-hit-merlin" /> Assassin hits Merlin</label>
+          <label><input type="checkbox" id="event-good-clean-win" /> Good wins with three clean missions</label>
+          <label>
+            <span>Evil sabotage participants</span>
+            <select id="evil-saboteur-count">
+              <option value="0">0</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="cta-row">
+          <button id="calculate-btn" class="btn-primary" type="button">Calculate</button>
+          <button id="copy-summary-btn" type="button">Copy Summary</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <div data-lang="zh" class="show"><h2>结果</h2></div>
+        <div data-lang="en"><h2>Results</h2></div>
+        <div id="result-table"></div>
+        <pre id="summary-output" class="formula"></pre>
+      </section>
+    </section>
+  </main>
+
+  <script src="./assets/js/lang.js"></script>
+  <script src="./assets/js/calculator.js"></script>
+</body>
+</html>
