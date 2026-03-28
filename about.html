@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>团队与项目背景 | 籌碼阿瓦隆</title>
+  <meta
+    name="description"
+    content="籌碼阿瓦隆（Chip Avalon）的团队信息、项目背景、发布说明与维护方式。"
+  />
+  <link rel="stylesheet" href="./assets/css/main.css" />
+  <style>
+    .member-list {
+      columns: 2;
+      column-gap: 28px;
+      margin: 12px 0 0;
+      padding-left: 20px;
+    }
+
+    .member-list li {
+      break-inside: avoid;
+      margin-bottom: 10px;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .team-figure {
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--panel);
+    }
+
+    .team-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: var(--accent-soft);
+    }
+
+    .team-figure figcaption {
+      padding: 10px 12px;
+      font-size: 14px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .timeline-item {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel);
+      padding: 14px 16px;
+    }
+
+    .timeline-item strong {
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    .mini-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 860px) {
+      .member-list {
+        columns: 1;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">籌碼阿瓦隆 / Chip Avalon</div>
+      <div class="toolbar">
+        <button id="btn-zh" class="active" type="button">中文</button>
+        <button id="btn-en" type="button">English</button>
+        <a class="btn-link" href="./index.html">Home</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <div data-lang="zh" class="show">
+        <h2>目录</h2>
+        <nav>
+          <a href="#intro">页面说明</a>
+          <a href="#project">项目背景</a>
+          <a href="#team">团队成员</a>
+          <a href="#photos">团队照片</a>
+          <a href="#timeline">项目时间线</a>
+          <a href="#maintenance">维护与更新</a>
+          <a href="#statement">发布说明</a>
+        </nav>
+      </div>
+
+      <div data-lang="en">
+        <h2>Contents</h2>
+        <nav>
+          <a href="#intro">Overview</a>
+          <a href="#project">Project Background</a>
+          <a href="#team">Team</a>
+          <a href="#photos">Photos</a>
+          <a href="#timeline">Timeline</a>
+          <a href="#maintenance">Maintenance</a>
+          <a href="#statement">Statement</a>
+        </nav>
+      </div>
+    </aside>
+
+    <section class="content">
+      <section class="hero" id="intro">
+        <div data-lang="zh" class="show">
+          <h1>团队与项目背景</h1>
+          <p>
+            这里记录籌碼阿瓦隆（Chip Avalon）的维护团队、项目来源、版本演化背景与发布说明。
+            该页面用于补充首页，不把成员信息与照片直接堆在主页主流程中。
+          </p>
+          <div class="meta">
+            <span class="tag">About</span>
+            <span class="tag">Team</span>
+            <span class="tag">Project Context</span>
+          </div>
+          <div class="mini-nav">
+            <a class="btn-link" href="./quickstart.html">规则介绍</a>
+            <a class="btn-link" href="./rules.html">完整规则</a>
+            <a class="btn-link" href="./calculator.html">简易结算</a>
+            <a class="btn-link" href="./changelog.html">更新记录</a>
+          </div>
+        </div>
+
+        <div data-lang="en">
+          <h1>Team & Project Background</h1>
+          <p>
+            This page records the maintainers, origin, development context, and publishing statement
+            of Chip Avalon. It supplements the homepage without overloading the main landing flow.
+          </p>
+          <div class="meta">
+            <span class="tag">About</span>
+            <span class="tag">Team</span>
+            <span class="tag">Project Context</span>
+          </div>
+          <div class="mini-nav">
+            <a class="btn-link" href="./quickstart.html">Quick Start</a>
+            <a class="btn-link" href="./rules.html">Full Rules</a>
+            <a class="btn-link" href="./calculator.html">Calculator</a>
+            <a class="btn-link" href="./changelog.html">Changelog</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="project">
+        <div data-lang="zh" class="show">
+          <h2>项目背景</h2>
+          <p>
+            籌碼阿瓦隆是一个基于阿瓦隆桌游体验而逐步形成的筹码规则扩展与结算系统。
+            它的目标不是替代原游戏，而是在社交局、熟人局或内容展示场景中，
+            提供更明确的风险、奖励、旁盘与局后结算结构。
+          </p>
+          <p>
+            当前站点采用 GitHub Pages 静态部署，方便低成本公开、持续更新与版本记录。
+            站点结构被拆分为首页、规则介绍、完整规则、结算工具、FAQ、更新记录与本页面，
+            以便后续扩展而不把所有内容塞进单一页面。
+          </p>
+        </div>
+
+        <div data-lang="en">
+          <h2>Project Background</h2>
+          <p>
+            Chip Avalon is a chip-based rule extension and settlement system developed around the
+            social and replayable experience of Avalon-style gameplay.
+            Its purpose is not to replace the original game, but to provide clearer incentives,
+            side markets, and post-game settlement structures for friendly games and online presentation.
+          </p>
+          <p>
+            The current site is deployed with GitHub Pages for low-cost public publishing,
+            continuous revision, and visible version history.
+            The content is split across multiple pages so the project can grow without forcing
+            everything into a single long page.
+          </p>
+        </div>
+      </section>
+
+      <section class="card" id="team">
+        <div data-lang="zh" class="show">
+          <h2>团队成员</h2>
+          <p class="note">
+            按 GitHub handle 字母顺序排列。项目组织者：<strong>@jacobian</strong>。
+          </p>
+
+          <ul class="member-list">
+            <li><strong>@du_sk</strong> — KTH Bachelor Student</li>
+            <li><strong>@jacobian</strong> — Organizer · KTH PhD Candidate</li>
+            <li><strong>@jiojio</strong> — PKU Bachelor Student</li>
+            <li><strong>@LXY</strong> — KTH Master Student</li>
+            <li><strong>@咳咳派大星</strong> — KTH PhD Candidate</li>
+            <li><strong>@小魚都來</strong> — KTH Master Student</li>
+            <li><strong>@摸魚</strong> — CTH Master Student</li>
+            <li><strong>@現在</strong> — KTH PhD Candidate</li>
+          </ul>
+        </div>
+
+        <div data-lang="en">
+          <h2>Team</h2>
+          <p class="note">
+            Listed in alphabetical order by GitHub handle. Project organizer:
+            <strong>@jacobian</strong>.
+          </p>
+
+          <ul class="member-list">
+            <li><strong>@du_sk</strong> — KTH Bachelor Student</li>
+            <li><strong>@jacobian</strong> — Organizer · KTH PhD Candidate</li>
+            <li><strong>@jiojio</strong> — PKU Bachelor Student</li>
+            <li><strong>@LXY</strong> — KTH Master Student</li>
+            <li><strong>@咳咳派大星</strong> — KTH PhD Candidate</li>
+            <li><strong>@小魚都來</strong> — KTH Master Student</li>
+            <li><strong>@摸魚</strong> — CTH Master Student</li>
+            <li><strong>@現在</strong> — KTH PhD Candidate</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card" id="photos">
+        <div data-lang="zh" class="show">
+          <h2>团队照片</h2>
+          <p class="note">用于记录项目参与者的线下活动与团队背景。</p>
+
+          <div class="team-grid">
+            <figure class="team-figure">
+              <img src="./assets/group1.png" alt="团队合照 1" />
+              <figcaption>团队合照 1</figcaption>
+            </figure>
+
+            <figure class="team-figure">
+              <img src="./assets/group2.png" alt="团队合照 2" />
+              <figcaption>团队合照 2</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div data-lang="en">
+          <h2>Team Photos</h2>
+          <p class="note">A visual record of project participants and offline sessions.</p>
+
+          <div class="team-grid">
+            <figure class="team-figure">
+              <img src="./assets/group1.png" alt="Team Photo 1" />
+              <figcaption>Team Photo 1</figcaption>
+            </figure>
+
+            <figure class="team-figure">
+              <img src="./assets/group2.png" alt="Team Photo 2" />
+              <figcaption>Team Photo 2</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="timeline">
+        <div data-lang="zh" class="show">
+          <h2>项目时间线</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <strong>阶段 1：规则形成</strong>
+              <p>从社交局实践中形成主局分、旁盘、奖池与结算逻辑的基础框架。</p>
+            </div>
+            <div class="timeline-item">
+              <strong>阶段 2：文本整理</strong>
+              <p>将零散规则整理为可公开阅读的页面，并开始形成版本意识与结构化目录。</p>
+            </div>
+            <div class="timeline-item">
+              <strong>阶段 3：站点拆分</strong>
+              <p>将项目拆分为首页、规则页、快速介绍页与结算页，为未来扩展预留空间。</p>
+            </div>
+            <div class="timeline-item">
+              <strong>阶段 4：持续更新</strong>
+              <p>后续可继续加入 FAQ、边界情况、示例局、赔率变体与更完整的结算工具。</p>
+            </div>
+          </div>
+        </div>
+
+        <div data-lang="en">
+          <h2>Project Timeline</h2>
+          <div class="timeline">
+            <div class="timeline-item">
+              <strong>Stage 1: Rule Formation</strong>
+              <p>The core structure emerged from actual social sessions, including base scores, side markets, prize pools, and settlement logic.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Stage 2: Rule Documentation</strong>
+              <p>Scattered notes were organized into public-facing text with clearer structure and version awareness.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Stage 3: Site Split</strong>
+              <p>The project was split into homepage, quick start, rules, and calculator pages to support future growth.</p>
+            </div>
+            <div class="timeline-item">
+              <strong>Stage 4: Ongoing Revision</strong>
+              <p>Future additions may include FAQ entries, edge cases, sample games, odds variants, and a more complete calculator.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="maintenance">
+        <div data-lang="zh" class="show">
+          <h2>维护与更新</h2>
+          <ul>
+            <li>站点基于 GitHub Pages 静态托管，便于公开访问与低成本维护。</li>
+            <li>规则文本、页面结构与脚本逻辑可以独立更新，避免单个文件过度膨胀。</li>
+            <li>后续更新建议统一记录在 <code>changelog.html</code> 与仓库提交记录中。</li>
+            <li>如未来加入 logo、FAQ 体系或更完整的结算逻辑，当前目录结构可直接承接。</li>
+          </ul>
+        </div>
+
+        <div data-lang="en">
+          <h2>Maintenance & Updates</h2>
+          <ul>
+            <li>The site is hosted with GitHub Pages for low-cost public access and simple maintenance.</li>
+            <li>Rule text, page structure, and script logic can evolve independently without overloading a single file.</li>
+            <li>Future changes should be recorded in <code>changelog.html</code> and the repository history.</li>
+            <li>If a logo system, FAQ structure, or more advanced calculator is added later, the current layout can absorb it cleanly.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card" id="statement">
+        <div data-lang="zh" class="show">
+          <h2>发布说明</h2>
+          <p>
+            本项目为基于阿瓦隆玩法体验而整理的社区扩展规则页面，用于记录原创文字结构、
+            版本演化与站点实现。该项目不主张对原游戏本体、原始美术或官方规则文本的权利。
+          </p>
+          <p>
+            若后续需要更正式的外部发布，可在此页面继续加入项目声明、授权说明、
+            商业使用边界与品牌识别信息。
+          </p>
+        </div>
+
+        <div data-lang="en">
+          <h2>Publishing Statement</h2>
+          <p>
+            This project is a community-facing rule extension site derived from Avalon-style gameplay experience.
+            It claims authorship only over the original written structure, revisions, and technical implementation of this site.
+          </p>
+          <p>
+            If the project later moves toward more formal public release, this page can be extended with licensing notes,
+            branding details, and commercial-use boundaries.
+          </p>
+        </div>
+      </section>
+
+      <section class="footer">
+        <div data-lang="zh" class="show">
+          籌碼阿瓦隆 / Chip Avalon · About Page
+        </div>
+        <div data-lang="en">
+          Chip Avalon · About Page
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="./assets/js/lang.js"></script>
+</body>
+</html>
