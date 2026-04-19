@@ -1,0 +1,81 @@
+{
+  "version": "0.2",
+  "updated": "2026-04-19",
+  "notes": "Schema v0.2 — one `game` = one sitting. Each game has players[], and each player has `finalScore` (settled once at game end) plus `rounds[]` (each round has camp + won, no score). A player may play several rounds as red and several as blue within the same game.",
+  "seasons": [
+    { "id": "2026-S1", "label": "2026 Spring" }
+  ],
+  "games": [
+    {
+      "id": "2026-04-12",
+      "date": "2026-04-12",
+      "season": "2026-S1",
+      "note": "example game — delete me",
+      "players": [
+        {
+          "name": "Alice",
+          "finalScore": 15,
+          "rounds": [
+            { "camp": "red",  "won": true  },
+            { "camp": "blue", "won": false },
+            { "camp": "red",  "won": true  }
+          ]
+        },
+        {
+          "name": "Bob",
+          "finalScore": 8,
+          "rounds": [
+            { "camp": "blue", "won": true  },
+            { "camp": "red",  "won": true  },
+            { "camp": "blue", "won": false }
+          ]
+        },
+        {
+          "name": "Carol",
+          "finalScore": -6,
+          "rounds": [
+            { "camp": "red",  "won": false },
+            { "camp": "blue", "won": true  },
+            { "camp": "red",  "won": false }
+          ]
+        },
+        {
+          "name": "Dan",
+          "finalScore": -4,
+          "rounds": [
+            { "camp": "blue", "won": false },
+            { "camp": "red",  "won": false },
+            { "camp": "blue", "won": true  }
+          ]
+        },
+        {
+          "name": "Eve",
+          "finalScore": -5,
+          "rounds": [
+            { "camp": "red",  "won": false },
+            { "camp": "blue", "won": true  },
+            { "camp": "red",  "won": false }
+          ]
+        },
+        {
+          "name": "Frank",
+          "finalScore": -4,
+          "rounds": [
+            { "camp": "blue", "won": true  },
+            { "camp": "red",  "won": false },
+            { "camp": "blue", "won": false }
+          ]
+        },
+        {
+          "name": "Grace",
+          "finalScore": -4,
+          "rounds": [
+            { "camp": "red",  "won": true  },
+            { "camp": "blue", "won": false },
+            { "camp": "red",  "won": true  }
+          ]
+        }
+      ]
+    }
+  ]
+}
