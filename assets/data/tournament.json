@@ -13,66 +13,75 @@
       "note": "example game — delete me",
       "players": [
         {
-          "name": "Alice",
-          "finalScore": 15,
+          "name": "jacobian",
+          "finalScore": 52,
           "rounds": [
-            { "camp": "red",  "won": true  },
-            { "camp": "blue", "won": false },
-            { "camp": "red",  "won": true  }
+            { "camp": "red",  "won": null    },
+            { "camp": "blue", "won": null   },
+            { "camp": "red",  "won": null    }
           ]
         },
         {
-          "name": "Bob",
-          "finalScore": 8,
+          "name": "Dr. pk",
+          "finalScore": 25,
           "rounds": [
-            { "camp": "blue", "won": true  },
-            { "camp": "red",  "won": true  },
-            { "camp": "blue", "won": false }
+            { "camp": "blue", "won": null    },
+            { "camp": "red",  "won": null    },
+            { "camp": "blue", "won": null   }
           ]
         },
         {
-          "name": "Carol",
-          "finalScore": -6,
+          "name": "none",
+          "finalScore": 32,
           "rounds": [
-            { "camp": "red",  "won": false },
-            { "camp": "blue", "won": true  },
-            { "camp": "red",  "won": false }
+            { "camp": "red",  "won": null },
+            { "camp": "blue", "won": null  },
+            { "camp": "red",  "won": null }
           ]
         },
         {
-          "name": "Dan",
-          "finalScore": -4,
+          "name": "Dr. 綠豆豆瓣醬",
+          "finalScore": 28,
           "rounds": [
-            { "camp": "blue", "won": false },
-            { "camp": "red",  "won": false },
-            { "camp": "blue", "won": true  }
+            { "camp": "blue", "won": null },
+            { "camp": "red",  "won": null },
+            { "camp": "blue", "won": null  }
           ]
         },
         {
-          "name": "Eve",
-          "finalScore": -5,
+          "name": "Dr. 森特君",
+          "finalScore": 24,
           "rounds": [
-            { "camp": "red",  "won": false },
-            { "camp": "blue", "won": true  },
-            { "camp": "red",  "won": false }
+            { "camp": "red",  "won": null },
+            { "camp": "blue", "won": null  },
+            { "camp": "red",  "won": null }
           ]
         },
         {
-          "name": "Frank",
-          "finalScore": -4,
+          "name": "楓丹白露",
+          "finalScore": 27,
           "rounds": [
-            { "camp": "blue", "won": true  },
-            { "camp": "red",  "won": false },
-            { "camp": "blue", "won": false }
+            { "camp": "blue", "won": null  },
+            { "camp": "red",  "won": null },
+            { "camp": "blue", "won": null }
           ]
         },
         {
-          "name": "Grace",
-          "finalScore": -4,
+          "name": "花花千島醬",
+          "finalScore": 47,
           "rounds": [
-            { "camp": "red",  "won": true  },
-            { "camp": "blue", "won": false },
-            { "camp": "red",  "won": true  }
+            { "camp": "red",  "won": null  },
+            { "camp": "blue", "won": null },
+            { "camp": "red",  "won": null  }
+          ]
+        },
+            {
+          "name": "Dr. 蛋殼",
+          "finalScore": 48,
+          "rounds": [
+            { "camp": "red",  "won": null  },
+            { "camp": "blue", "won": null },
+            { "camp": "red",  "won": null  }
           ]
         }
       ]
