@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <link rel="icon" type="image/svg+xml" href="./assets/avalon.svg" />
+  <link rel="shortcut icon" href="./assets/avalon.svg" />
+  <link rel="apple-touch-icon" href="./assets/avalon.svg" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>錦標賽 | Tournament · 籌碼阿瓦隆</title>
+  <meta name="description" content="籌碼阿瓦隆錦標賽榜單：玩家總分、紅藍勝局、月度與年度最佳玩家。" />
+  <link rel="stylesheet" href="./assets/css/main.css" />
+  <style>
+    .t-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px; align-items: center; }
+    .t-filters select, .t-filters input { padding: 6px 10px; }
+    .t-table { width: 100%; border-collapse: collapse; }
+    .t-table th, .t-table td { padding: 8px 10px; text-align: left; border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .t-table th { cursor: pointer; user-select: none; white-space: nowrap; }
+    .t-table th[data-sort]::after { content: " ↕"; opacity: 0.4; font-size: 0.85em; }
+    .t-table th.asc::after  { content: " ▲"; opacity: 1; }
+    .t-table th.desc::after { content: " ▼"; opacity: 1; }
+    .t-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .t-rank { width: 3em; color: #888; }
+    .t-badge { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 0.85em; }
+    .t-badge.red  { background: #fde2e2; color: #a33; }
+    .t-badge.blue { background: #e0ebff; color: #335ea8; }
+    .t-muted { color: #888; font-size: 0.9em; }
+    .t-empty { padding: 24px; text-align: center; color: #888; }
+    .t-mvp { display: flex; gap: 12px; flex-wrap: wrap; }
+    .t-mvp .mvp-box { flex: 1 1 200px; padding: 12px; border: 1px solid rgba(0,0,0,0.08); border-radius: 8px; }
+    .t-mvp .mvp-name { font-size: 1.2em; font-weight: 600; }
+    .t-games details { margin: 6px 0; }
+    .t-games summary { cursor: pointer; padding: 6px 0; }
+    .t-round-dots { display: inline-flex; gap: 2px; }
+    .t-round-dots span {
+      display: inline-block; width: 14px; height: 14px; border-radius: 3px;
+      font-size: 10px; line-height: 14px; text-align: center; color: #fff;
+    }
+    .t-round-dots .r { background: #c0392b; }
+    .t-round-dots .b { background: #2c6fd6; }
+    .t-round-dots .lose { opacity: 0.35; }
+  </style>
+</head>
+<body>
+  <nav class="toolbar">
+    <a class="btn-link" href="./index.html"><span data-lang="zh" class="show">首页</span><span data-lang="en">Home</span></a>
+    <a class="btn-link" href="./quickstart.html"><span data-lang="zh" class="show">规则介绍</span><span data-lang="en">Quick Start</span></a>
+    <a class="btn-link" href="./rules.html"><span data-lang="zh" class="show">完整规则</span><span data-lang="en">Rules</span></a>
+    <a class="btn-link" href="./calculator.html"><span data-lang="zh" class="show">简易结算</span><span data-lang="en">Calculator</span></a>
+    <a class="btn-link" href="./tournament.html"><span data-lang="zh" class="show">锦标赛</span><span data-lang="en">Tournament</span></a>
+    <a class="btn-link" href="./avalon-intro.html"><span data-lang="zh" class="show">阿瓦隆互动介绍</span><span data-lang="en">Avalon Intro</span></a>
+    <a class="btn-link" href="./chip-rule-intro.html"><span data-lang="zh" class="show">规则互动演示</span><span data-lang="en">Rule Demo</span></a>
+    <a class="btn-link" href="./about.html"><span data-lang="zh" class="show">关于</span><span data-lang="en">About</span></a>
+  </nav>
+
+  <main class="layout single">
+    <section class="content">
+
+      <section class="hero">
+        <div data-lang="zh" class="show">
+          <h1>錦標賽榜單</h1>
+          <p>一場「遊戲（game）」= 一次坐下來的多局對局。每位玩家在同一場遊戲裡可能既當過紅方也當過藍方，最終只有一個整場的 <code>finalScore</code>。</p>
+          <p class="t-muted">數據來源：<code>assets/data/tournament.json</code>。新增一場遊戲 = 在 <code>games[]</code> 裡 push 一條記錄。</p>
+        </div>
+        <div data-lang="en">
+          <h1>Tournament Leaderboard</h1>
+          <p>One <em>game</em> is one sitting with multiple rounds. A player can play as red and as blue within the same game; only one <code>finalScore</code> is settled at the end.</p>
+          <p class="t-muted">Data source: <code>assets/data/tournament.json</code>. Add a game by appending to <code>games[]</code>.</p>
+        </div>
+      </section>
+
+      <!-- 篩選 -->
+      <section class="card">
+        <div data-lang="zh" class="show"><h2>篩選</h2></div>
+        <div data-lang="en"><h2>Filter</h2></div>
+        <div class="t-filters">
+          <label>
+            <span data-lang="zh" class="show">范围</span><span data-lang="en">Scope</span>
+            <select id="f-scope">
+              <option value="all">All · 全部</option>
+              <option value="year">Year · 年度</option>
+              <option value="month">Month · 月度</option>
+              <option value="season">Season · 赛季</option>
+            </select>
+          </label>
+          <label id="f-year-wrap" hidden>Year <select id="f-year"></select></label>
+          <label id="f-month-wrap" hidden>Month <input type="month" id="f-month" /></label>
+          <label id="f-season-wrap" hidden>Season <select id="f-season"></select></label>
+          <button class="btn-link" id="f-reset" type="button">Reset</button>
+        </div>
+        <div class="t-muted" id="f-summary"></div>
+      </section>
+
+      <!-- MVP -->
+      <section class="card">
+        <div data-lang="zh" class="show"><h2>本范围 MVP</h2></div>
+        <div data-lang="en"><h2>MVPs in scope</h2></div>
+        <div class="t-mvp" id="mvp-box"></div>
+      </section>
+
+      <!-- 排行 -->
+      <section class="card">
+        <div data-lang="zh" class="show"><h2>玩家排行</h2></div>
+        <div data-lang="en"><h2>Player standings</h2></div>
+        <div style="overflow-x:auto">
+          <table class="t-table" id="standings">
+            <thead>
+              <tr>
+                <th class="t-rank">#</th>
+                <th data-sort="name">Player</th>
+                <th data-sort="games"     class="num" title="Games played">G</th>
+                <th data-sort="score"     class="num">Score</th>
+                <th data-sort="avg"       class="num" title="Score per game">Avg</th>
+                <th data-sort="rounds"    class="num" title="Total rounds">R</th>
+                <th data-sort="redWins"   class="num" title="Red rounds won">Red W</th>
+                <th data-sort="redGames"  class="num" title="Red rounds played">Red P</th>
+                <th data-sort="blueWins"  class="num" title="Blue rounds won">Blue W</th>
+                <th data-sort="blueGames" class="num" title="Blue rounds played">Blue P</th>
+                <th data-sort="winrate"   class="num" title="Round winrate">Winrate</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <div class="t-empty" id="empty" hidden>No games in this scope.</div>
+        </div>
+      </section>
+
+      <!-- 明細 -->
+      <section class="card t-games">
+        <div data-lang="zh" class="show"><h2>遊戲明細</h2></div>
+        <div data-lang="en"><h2>Game log</h2></div>
+        <div id="games-log"></div>
+      </section>
+
+      <section class="footer">
+        <div data-lang="zh" class="show">数据版本：<span id="data-version">-</span> · 更新日期：<span id="data-updated">-</span></div>
+        <div data-lang="en">Data version: <span id="data-version-en">-</span> · Updated: <span id="data-updated-en">-</span></div>
+      </section>
+    </section>
+  </main>
+
+  <script src="./assets/js/lang.js"></script>
+  <script src="./assets/js/tournament.js"></script>
+</body>
+</html>
