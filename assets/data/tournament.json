@@ -3,14 +3,14 @@
   "updated": "2026-04-19",
   "notes": "Schema v0.2 — one `game` = one sitting. Each game has players[], and each player has `finalScore` (settled once at game end) plus `rounds[]` (each round has camp + won, no score). A player may play several rounds as red and several as blue within the same game.",
   "seasons": [
-    { "id": "2026-S1", "label": "2026 Spring" }
+    { "id": "2026-S1", "label": "2026 Spring" } ,
   ],
   "games": [
     {
       "id": "2026-04-12",
       "date": "2026-04-12",
       "season": "2026-S1",
-      "note": "example game — delete me",
+      "note": "Stable 1.0 version (Academy)",
       "players": [
         {
           "name": "jacobian",
@@ -84,6 +84,117 @@
             { "camp": "red",  "won": null  }
           ]
         }
+      ]
+    }
+
+    ,
+
+
+        {
+      "id": "2026-04-23",
+      "date": "2026-04-23",
+      "season": "2026-S1",
+      "note": "Stable 1.1 version",
+      "players": [
+        {
+          "name": "jacobian",
+          "finalScore": 46,
+          "rounds": [
+            { "camp": "red",  "won": null    },
+            { "camp": "blue", "won": null   },
+            { "camp": "red",  "won": null    }
+          ]
+        },
+        {
+          "name": "du_sk",
+          "finalScore": 44,
+          "rounds": [
+            { "camp": "blue", "won": null    },
+            { "camp": "red",  "won": null    },
+            { "camp": "blue", "won": null   }
+          ]
+        },
+        {
+          "name": "Dr. 石木",
+          "finalScore": 35,
+          "rounds": [
+            { "camp": "red",  "won": null },
+            { "camp": "blue", "won": null  },
+            { "camp": "red",  "won": null }
+          ]
+        },
+        {
+          "name": "JNPW",
+          "finalScore": 40,
+          "rounds": [
+            { "camp": "blue", "won": null },
+            { "camp": "red",  "won": null },
+            { "camp": "blue", "won": null  }
+          ]
+        },
+        {
+          "name": "半斤八兩",
+          "finalScore": 52,
+          "rounds": [
+            { "camp": "red",  "won": null },
+            { "camp": "blue", "won": null  },
+            { "camp": "red",  "won": null }
+          ]
+        },
+        {
+          "name": "billy",
+          "finalScore": 23,
+          "rounds": [
+            { "camp": "blue", "won": null  },
+            { "camp": "red",  "won": null },
+            { "camp": "blue", "won": null }
+          ]
+        },
+        {
+          "name": "派大星",
+          "finalScore": 33,
+          "rounds": [
+            { "camp": "red",  "won": null  },
+            { "camp": "blue", "won": null },
+            { "camp": "red",  "won": null  }
+          ]
+        },
+            {
+          "name": "小魚都來",
+          "finalScore": 28,
+          "rounds": [
+            { "camp": "red",  "won": null  },
+            { "camp": "blue", "won": null },
+            { "camp": "red",  "won": null  }
+          ]
+        } ,
+           {
+          "name": "LXY",
+          "finalScore": 49,
+          "rounds": [
+            { "camp": "red",  "won": null  },
+            { "camp": "blue", "won": null },
+            { "camp": "red",  "won": null  }
+          ]
+        },
+            {
+          "name": "Laddish",
+          "finalScore": 23,
+          "rounds": [
+            { "camp": "red",  "won": null  },
+            { "camp": "blue", "won": null },
+            { "camp": "red",  "won": null  }
+          ]
+        },
+            {
+          "name": "Ni安",
+          "finalScore": 68,
+          "rounds": [
+            { "camp": "red",  "won": null  },
+            { "camp": "blue", "won": null },
+            { "camp": "red",  "won": null  }
+          ]
+        },
       ]
     }
   ]
