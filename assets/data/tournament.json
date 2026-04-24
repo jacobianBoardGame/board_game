@@ -3,7 +3,7 @@
   "updated": "2026-04-19",
   "notes": "Schema v0.2 — one `game` = one sitting. Each game has players[], and each player has `finalScore` (settled once at game end) plus `rounds[]` (each round has camp + won, no score). A player may play several rounds as red and several as blue within the same game.",
   "seasons": [
-    { "id": "2026-S1", "label": "2026 Spring" } ,
+    { "id": "2026-S1", "label": "2026 Spring" } 
   ],
   "games": [
     {
@@ -194,7 +194,7 @@
             { "camp": "blue", "won": null },
             { "camp": "red",  "won": null  }
           ]
-        },
+        }
       ]
     }
   ]
